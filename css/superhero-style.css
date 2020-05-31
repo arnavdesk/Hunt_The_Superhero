@@ -1,0 +1,183 @@
+body{
+    background-color: rgb(11, 16, 39);
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: white;
+}
+
+#main-1{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    font-size: 25px;
+}
+
+#nav-bar{
+    left: 0px;
+    right: 0px;
+    display: flex;
+    padding: 15px 30px;
+    background-color: black;
+    color: white;
+}
+
+.nav-items{
+    margin: 0px 20px;
+}
+
+
+#main-info{
+    display: flex;
+    background-color: rgb(20, 27, 65);
+    padding: 30px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.hero-img-container{
+    align-self: center;
+    width: 30%;
+}
+
+.hero-img{
+    border-radius: 50px;
+    width: 100%;
+    min-width: 350px;
+}
+
+.super-hero-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 100px;
+    width: 90%;
+}
+
+.super-hero-name{
+    border: 5px solid white;
+    padding: 10px;
+    align-self: center;
+    font-size: 70px;
+    color: white;
+    margin: 10px 0px;
+}
+
+#hero-biography{
+    align-self: flex-start;
+}
+
+.less-important{
+    font-size: 20px;
+    color: gray;
+}
+
+.bottom-margin-10px{
+    margin-bottom: 10px;
+}
+
+
+/* Display Skills Properties */
+
+
+.power-stats{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+
+.skill-progress{
+    width: 200px;
+    background-color: lightgray;
+    border-radius: 25px;
+    margin: 10px;
+}
+
+.skill-radius{
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    /* box-shadow: 0px 0px 8px 2px gray; */
+}
+
+.skill-name{
+    display: block;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+}
+
+/* Colors */
+
+.skill-color-blue{
+    background-color: #0a97b0;
+}
+
+.skill-color-red{
+    background-color: #bb3b0e;
+}
+
+.skill-color-orange{
+    background-color: #f17808;
+}
+
+.skill-color-yello{
+    background-color: #ffcd3c;
+}
+
+.skill-color-green{
+    background-color: #06623b;
+}
+
+.skill-color-purple{
+   background-color:  #553f2d;
+}
+
+/* skill width
+
+.skill-strength-80{
+    width: 80%;
+}
+
+.skill-strength-70{
+    width: 70%;
+}
+
+.skill-strength-75{
+    width: 75%;
+}
+
+.skill-strength-60{
+    width: 60%;
+} */
+
+
+/* Media Queries */
+
+@media screen and (max-width:965px){
+    #main-info{
+        flex-direction: column;
+    }
+
+    .skill-progress{
+        margin: 10px;
+    }
+
+    .hero-img-container{
+        width: 50%;
+        align-self: center;
+    }
+
+    .hero-img{
+        min-width: 150px;
+    }
+
+    .super-hero-details{
+        margin-left: 0px;
+        align-self: center;
+    }
+
+}
