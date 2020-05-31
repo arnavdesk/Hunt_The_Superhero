@@ -10,6 +10,15 @@ body{
     align-items: center;
 }
 
+a{
+    color: white;
+    text-decoration: none;
+}
+
+#starred{
+    color: red;
+}
+
 #main-1{
     display: flex;
     width: 100%;
