@@ -55,8 +55,17 @@
         }
     }
 
+    const renderHeroWork = function (work) {
+        for (const it in work) {
+            document.getElementById(it).innerHTML = work[it];
+        }
+    }
 
-
+    const renderHeroConnections = function (connections) {
+        for (const it in connections) {
+            document.getElementById(it).innerHTML = connections[it];
+        }
+    }
 
     const renderHero = function (data) {
         heroImg.setAttribute("src", data.image.url);
@@ -64,6 +73,8 @@
         renderHeroBio(data.biography);
         renderPowerStats(data.powerstats);
         renderHeroAppearence(data.appearance);
+        renderHeroWork(data.work);
+        renderHeroConnections(data.connections);
         if (localArrayIds.indexOf(heroId) !== -1) {
             starredIcon.innerHTML = '<i id="star-click" class="fas fa-heart"></i>';
         }

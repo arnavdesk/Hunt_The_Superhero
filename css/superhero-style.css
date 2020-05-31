@@ -74,15 +74,16 @@ a{
     align-self: center;
     font-size: 2em;
     color: white;
-    margin: 10px 0px;
+    margin: 15px 0px;
+    margin-bottom: 30px ;
 }
 
 .less-important{
     color: lightslategray;
 }
 
-.bottom-margin-10px{
-    margin-bottom: 10px;
+.bottom-margin-20px{
+    margin-bottom: 20px;
 }
 
 
@@ -214,6 +215,11 @@ a{
 /* Media Queries */
 
 @media screen and (max-width:965px){
+
+    .section-heading{
+        font-size: 30px;
+    }
+
     #main-info{
         flex-direction: column;
     }
@@ -241,4 +247,10 @@ a{
         font-size: 20px;
     }
 
+}
+
+@media screen and (max-width:330px){
+    .nav-items{
+        font-size: 18px;
+    }
 }

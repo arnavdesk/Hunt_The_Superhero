@@ -136,3 +136,9 @@ label{
     }
 
 }
+
+@media screen and (max-width:330px){
+    .nav-items{
+        font-size: 18px;
+    }
+}
