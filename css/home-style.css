@@ -5,6 +5,11 @@ body{
     margin-bottom: 30px;
 }
 
+a{
+    color: white;
+    text-decoration: none;
+}
+
 label{
     text-align: center;
 }

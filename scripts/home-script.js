@@ -2,6 +2,15 @@
     const fetchBtn = document.getElementById("get-image");
     const textBar = document.getElementById("name-input");
     const superHeroContainer = document.getElementById("main-2");
+    let localArrayIds = [];
+    // listFavHero
+    // localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
+    let stringOfHeroId = localStorage.getItem("listFavHero");
+    if (stringOfHeroId !== null || stringOfHeroId != undefined) {
+        localArrayIds = JSON.parse(stringOfHeroId);
+    }
+
+    console.log(localArrayIds);
 
 
     var getSuperHeroCard = function (sourceImg, name, id) {
@@ -29,7 +38,37 @@
 
         var starredIcon = document.createElement("div");
         starredIcon.setAttribute("class", "starred");
-        starredIcon.innerHTML = '<i class="far fa-heart"></i>';
+
+        // function findId(hero_id) {
+        //     return hero_id === id;
+        // }
+
+        if (localArrayIds.indexOf(id) !== -1) {
+            starredIcon.innerHTML = '<i id="star-click" class="fas fa-heart"></i>';
+            localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
+        }
+        else {
+            starredIcon.innerHTML = '<i id="star-click" class="far fa-heart"></i>';
+            localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
+        }
+
+
+        starredIcon.onclick = function () {
+            var index = localArrayIds.indexOf(id);
+            if (index !== -1) {
+                console.log(id);
+                localArrayIds.splice(index, 1);
+                starredIcon.innerHTML = '<i id="star-click" class="far fa-heart"></i>';
+                console.log(localArrayIds);
+                localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
+            }
+            else {
+                localArrayIds.push(id);
+                starredIcon.innerHTML = '<i id="star-click" class="fas fa-heart"></i>';
+                console.log(localArrayIds);
+                localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
+            }
+        }
 
         cardBody.appendChild(heroName);
         cardBody.appendChild(starredIcon);
@@ -40,8 +79,13 @@
         cardL.appendChild(idDiv);
         cardL.appendChild(imageContainer);
         cardL.appendChild(cardBody);
-        cardL.onclick = function () {
-            window.open("superhero.html?hero_id=" + id, "_self");
+        cardL.onclick = function (event) {
+            if (event.target.id === starredIcon.firstChild.id) {
+                return;
+            }
+            else {
+                window.open("superhero.html?hero_id=" + id, "_self");
+            }
         }
         return cardL;
     }
