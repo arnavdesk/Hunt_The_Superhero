@@ -1,15 +1,19 @@
 (function () {
-    const fetchBtn = document.getElementById("get-image");
-    const textBar = document.getElementById("name-input");
+
+    // fetch all the required dom elements.
     const superHeroContainer = document.getElementById("main-2");
     const containerEmptyDiv = document.getElementById("nothing-here");
-    let localArrayIds = [];
-    // listFavHero
+    let localArrayIds = []; //array used for localStorage
+    // listFavHero is the local storage key
     // localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
+
+    //try to getch from local storage
     let stringOfHeroId = localStorage.getItem("listFavHero");
     if (stringOfHeroId !== null || stringOfHeroId != undefined) {
         localArrayIds = JSON.parse(stringOfHeroId);
     }
+
+    // if localStorage does not have any value then return and show msg.
 
     if (localArrayIds.length == 0) {
         containerEmptyDiv.style.display = "block";
@@ -25,6 +29,7 @@
 
 
 
+    // create a function for toasting/notification by fetching toast div
 
     const toastDiv = document.getElementById("toast-div");
 
@@ -49,6 +54,8 @@
     console.log(localArrayIds);
 
 
+
+    // function for creating a super hero card, it requires name, url and id and it creates a card.
     var getSuperHeroCard = function (sourceImg, name, id) {
         var cardL = document.createElement("div");
         cardL.setAttribute("class", "card-layout");
@@ -75,17 +82,15 @@
         var starredIcon = document.createElement("div");
         starredIcon.setAttribute("class", "starred");
 
-        // function findId(hero_id) {
-        //     return hero_id === id;
-        // }
 
+        // if it is present in local array fill the heart.
         if (localArrayIds.indexOf(id) !== -1) {
             starredIcon.innerHTML = '<i id="star-click" class="fas fa-heart"></i>';
             localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
         }
 
-
-
+        // if it is present in local array(favourites), 
+        // then executing this should remove it from favourites
         starredIcon.onclick = function () {
             var index = localArrayIds.indexOf(id);
             if (index !== -1) {
@@ -109,6 +114,11 @@
         cardL.appendChild(idDiv);
         cardL.appendChild(imageContainer);
         cardL.appendChild(cardBody);
+
+        // appending the card to the local array also ensuring that
+        // when the user clicks on heart it should remove 
+        // from favourites instead of opening the card.
+
         cardL.onclick = function (event) {
             if (event.target.id === starredIcon.firstChild.id) {
                 return;
@@ -122,12 +132,14 @@
 
 
 
+    //  function for rendering hero when we have data
     let renderHeros = async function (data) {
         let it = data
         superHeroContainer.appendChild(getSuperHeroCard(it.image.url, it.name, it.id));
     }
 
 
+    // function to load favourites by using id in localStorage.
     let loadFavourites = async function (id) {
 
         let response = await fetch(`https://www.superheroapi.com/api.php/10212976430764752/${id}`).catch(e => {
@@ -137,6 +149,7 @@
         renderHeros(data);
     }
 
+    // iterating on each id and calling load favourites.
     for (const iterator of localArrayIds) {
         loadFavourites(iterator);
     }

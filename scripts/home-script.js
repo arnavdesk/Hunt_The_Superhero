@@ -1,4 +1,6 @@
 (function () {
+
+    // fetch all the dom elements required to do any operation.
     const fetchBtn = document.getElementById("get-image");
     const textBar = document.getElementById("name-input");
     const superHeroContainer = document.getElementById("main-2");
@@ -7,6 +9,8 @@
     const mainHeding = document.getElementById("heading-main");
     const toastDiv = document.getElementById("toast-div");
 
+
+    // toast function for showing notification/toasting.
     let toast = function (msg, state) {
         toastDiv.innerHTML = msg;
         if (state == true) {
@@ -25,6 +29,8 @@
         }
     }
 
+
+    // fetching favourite array from localStorage. if it is not present then create empty array.
     let localArrayIds = [];
     // listFavHero
     // localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
@@ -35,7 +41,8 @@
 
     console.log(localArrayIds);
 
-    console.log(hamBar.style.maxHeight);
+
+    // hamburger menu for smaller devices.
 
     hamButton.onclick = function () {
         if (hamBar.style.maxHeight == "0px" || hamBar.style.maxHeight == "") {
@@ -50,6 +57,7 @@
 
 
 
+    // creating a superhero card in dom when rendering is done.
     var getSuperHeroCard = function (sourceImg, name, id) {
         var cardL = document.createElement("div");
         cardL.setAttribute("class", "card-layout");
@@ -80,6 +88,9 @@
         //     return hero_id === id;
         // }
 
+
+        // check if element is present in localStorage or
+        // not if it is there then it is favourite, color it else not favourite do not color.
         if (localArrayIds.indexOf(id) !== -1) {
             starredIcon.innerHTML = '<i id="star-click" class="fas fa-heart"></i>';
             localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
@@ -89,7 +100,7 @@
             localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
         }
 
-
+        // functionality for adding to favourites and removing it.
         starredIcon.onclick = function () {
             var index = localArrayIds.indexOf(id);
             if (index !== -1) {
@@ -112,12 +123,13 @@
         cardBody.appendChild(heroName);
         cardBody.appendChild(starredIcon);
 
-
-
         imageContainer.appendChild(imgV);
         cardL.appendChild(idDiv);
         cardL.appendChild(imageContainer);
         cardL.appendChild(cardBody);
+
+        // Ensuring that clicking on favourite button works else the superhero page is opened.
+
         cardL.onclick = function (event) {
             if (event.target.id === starredIcon.firstChild.id) {
                 return;
@@ -131,6 +143,7 @@
 
 
 
+    // render heroes and if they are not present showing empty errpr.
     let renderHeros = async function (data, name) {
         if (data.results == null) {
             superHeroContainer.innerHTML = "";
@@ -143,9 +156,14 @@
         for (const it of data.results) {
             superHeroContainer.appendChild(getSuperHeroCard(it.image.url, it.name, it.id));
         }
-
     }
 
+
+    //  implementing suggestion kind of thing.
+    // as soon as any key is pressed a get request is made on server.
+    // all the elements found by that name is rendered. if no element found then show error. 
+    // it also ensures that only those elements are entered 
+    // into the render list whose name matches with the one written in the input bar.
 
     textBar.onkeyup = async function () {
         mainHeding.style.display = "none";
@@ -163,8 +181,11 @@
 
     }
 
+    // making sure button click also works.
     fetchBtn.onclick = () => { textBar.onkeyup() };
 
+
+    // FUNCTION TO FETCH ELEMENT BY ID USED IN OTHER FILES!!!!
 
     // let renderOnLoad = async function (data) {
     //     let it = data
