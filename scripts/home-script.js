@@ -2,6 +2,10 @@
     const fetchBtn = document.getElementById("get-image");
     const textBar = document.getElementById("name-input");
     const superHeroContainer = document.getElementById("main-2");
+    const hamButton = document.getElementById("ham-btn");
+    const hamBar = document.getElementById("ham-bar");
+
+
     let localArrayIds = [];
     // listFavHero
     // localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
@@ -11,6 +15,20 @@
     }
 
     console.log(localArrayIds);
+
+    console.log(hamBar.style.maxHeight);
+
+    hamButton.onclick = function () {
+        if (hamBar.style.maxHeight == "0px" || hamBar.style.maxHeight == "") {
+            hamBar.style.maxHeight = "40vh";
+        }
+        else {
+            hamBar.style.maxHeight = "0px";
+        }
+    }
+
+
+
 
 
     var getSuperHeroCard = function (sourceImg, name, id) {
