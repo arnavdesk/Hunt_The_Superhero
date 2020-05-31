@@ -2,12 +2,48 @@
     const fetchBtn = document.getElementById("get-image");
     const textBar = document.getElementById("name-input");
     const superHeroContainer = document.getElementById("main-2");
+    const containerEmptyDiv = document.getElementById("nothing-here");
     let localArrayIds = [];
     // listFavHero
     // localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
     let stringOfHeroId = localStorage.getItem("listFavHero");
     if (stringOfHeroId !== null || stringOfHeroId != undefined) {
         localArrayIds = JSON.parse(stringOfHeroId);
+    }
+
+    if (localArrayIds.length == 0) {
+        containerEmptyDiv.style.display = "block";
+        return;
+    }
+
+    let showError = function () {
+        if (localArrayIds.length == 0) {
+            containerEmptyDiv.style.display = "block";
+            return;
+        }
+    }
+
+
+
+
+    const toastDiv = document.getElementById("toast-div");
+
+    let toast = function (msg, state) {
+        toastDiv.innerHTML = msg;
+        if (state == true) {
+            toastDiv.style.backgroundColor = "green";
+            toastDiv.style.opacity = 1;
+            setTimeout(() => {
+                toastDiv.style.opacity = 0
+            }, 800)
+        }
+        else {
+            toastDiv.style.backgroundColor = "red";
+            toastDiv.style.opacity = 1;
+            setTimeout(() => {
+                toastDiv.style.opacity = 0
+            }, 800)
+        }
     }
 
     console.log(localArrayIds);
@@ -49,6 +85,7 @@
         }
 
 
+
         starredIcon.onclick = function () {
             var index = localArrayIds.indexOf(id);
             if (index !== -1) {
@@ -58,6 +95,8 @@
                 console.log(localArrayIds);
                 superHeroContainer.removeChild(cardL);
                 localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
+                toast(heroName.innerHTML + " Removed from Favourites", 0);
+                showError();
             }
         }
 
@@ -85,9 +124,7 @@
 
     let renderHeros = async function (data) {
         let it = data
-
         superHeroContainer.appendChild(getSuperHeroCard(it.image.url, it.name, it.id));
-
     }
 
 

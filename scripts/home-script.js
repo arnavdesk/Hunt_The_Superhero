@@ -5,6 +5,25 @@
     const hamButton = document.getElementById("ham-btn");
     const hamBar = document.getElementById("ham-bar");
     const mainHeding = document.getElementById("heading-main");
+    const toastDiv = document.getElementById("toast-div");
+
+    let toast = function (msg, state) {
+        toastDiv.innerHTML = msg;
+        if (state == true) {
+            toastDiv.style.backgroundColor = "green";
+            toastDiv.style.opacity = 1;
+            setTimeout(() => {
+                toastDiv.style.opacity = 0
+            }, 800)
+        }
+        else {
+            toastDiv.style.backgroundColor = "red";
+            toastDiv.style.opacity = 1;
+            setTimeout(() => {
+                toastDiv.style.opacity = 0
+            }, 800)
+        }
+    }
 
     let localArrayIds = [];
     // listFavHero
@@ -79,12 +98,14 @@
                 starredIcon.innerHTML = '<i id="star-click" class="far fa-heart"></i>';
                 console.log(localArrayIds);
                 localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
+                toast(heroName.innerHTML + " Removed from Favourites", 0);
             }
             else {
                 localArrayIds.push(id);
                 starredIcon.innerHTML = '<i id="star-click" class="fas fa-heart"></i>';
                 console.log(localArrayIds);
                 localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
+                toast(heroName.innerHTML + " Added to Favourites", 1);
             }
         }
 
