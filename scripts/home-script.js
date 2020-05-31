@@ -4,7 +4,7 @@
     const superHeroContainer = document.getElementById("main-2");
     const hamButton = document.getElementById("ham-btn");
     const hamBar = document.getElementById("ham-bar");
-
+    const mainHeding = document.getElementById("heading-main");
 
     let localArrayIds = [];
     // listFavHero
@@ -45,7 +45,7 @@
         var imgV = document.createElement("img");
         imgV.setAttribute("class", "hero-img");
         imgV.setAttribute("src", sourceImg);
-        imgV.setAttribute("onerror", "this.src='/assets/imgErr.jpg';");
+        imgV.setAttribute("onerror", "this.onerror= null; this.src='assets/imgErr.jpg';");
 
         var cardBody = document.createElement("div");
         cardBody.setAttribute("class", "card-body");
@@ -122,14 +122,16 @@
         for (const it of data.results) {
             superHeroContainer.appendChild(getSuperHeroCard(it.image.url, it.name, it.id));
         }
+
     }
 
 
     textBar.onkeyup = async function () {
-
+        mainHeding.style.display = "none";
         let name = textBar.value;
         if (name.length == 0) {
             superHeroContainer.innerHTML = "";
+            mainHeding.style.display = "block";
             return;
         }
         let response = await fetch(`https://www.superheroapi.com/api.php/10212976430764752/search/${name}`).catch(e => {
@@ -141,5 +143,24 @@
     }
 
     fetchBtn.onclick = () => { textBar.onkeyup() };
+
+
+    // let renderOnLoad = async function (data) {
+    //     let it = data
+    //     superHeroContainer.appendChild(getSuperHeroCard(it.image.url, it.name, it.id));
+    // }
+
+    // let loadSuperHeroes = async function (id) {
+
+    //     let response = await fetch(`https://www.superheroapi.com/api.php/10212976430764752/${id}`, { signal }).catch(e => {
+    //         console.log("error");
+    //     });
+    //     let data = await response.json();
+    //     renderOnLoad(data);
+    // }
+
+    // for (const iterator of allTheIds) {
+    //     loadSuperHeroes(iterator);
+    // }
 
 })();
