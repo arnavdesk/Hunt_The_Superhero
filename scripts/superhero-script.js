@@ -9,6 +9,26 @@
     const alias = document.getElementById("alias");
     const starredIcon = document.getElementById("starred");
 
+    const toastDiv = document.getElementById("toast-div");
+
+    let toast = function (msg, state) {
+        toastDiv.innerHTML = msg;
+        if (state == true) {
+            toastDiv.style.backgroundColor = "green";
+            toastDiv.style.opacity = 1;
+            setTimeout(() => {
+                toastDiv.style.opacity = 0
+            }, 800)
+        }
+        else {
+            toastDiv.style.backgroundColor = "red";
+            toastDiv.style.opacity = 1;
+            setTimeout(() => {
+                toastDiv.style.opacity = 0
+            }, 800)
+        }
+    }
+
     let stringOfHeroId = localStorage.getItem("listFavHero");
     if (stringOfHeroId !== null || stringOfHeroId != undefined) {
         localArrayIds = JSON.parse(stringOfHeroId);
@@ -16,27 +36,40 @@
 
     console.log(localArrayIds);
 
-    const renderHero = function (data) {
-        heroImg.setAttribute("src", data.image.url);
-        heroName.innerHTML = data.name;
-        fullName.innerHTML = data.biography["full-name"];
-        alterEgo.innerHTML = data.biography["alter-egos"];
-        alias.innerHTML = data.biography["aliases"];
-        let powerstats = data["powerstats"]
-        console.log(powerstats);
+    const renderHeroBio = function (bio) {
+        for (const it in bio) {
+            document.getElementById(it).innerHTML = bio[it];
+        }
+    }
+
+    const renderHeroAppearence = function (appearance) {
+        for (const it in appearance) {
+            document.getElementById(it).innerHTML = appearance[it];
+        }
+    }
+
+    const renderPowerStats = function (powerstats) {
         for (const it in powerstats) {
             let skill = document.getElementById(it);
             skill.style.width = `${powerstats[it]}%`;
         }
+    }
 
+
+
+
+    const renderHero = function (data) {
+        heroImg.setAttribute("src", data.image.url);
+        heroName.innerHTML = data.name;
+        renderHeroBio(data.biography);
+        renderPowerStats(data.powerstats);
+        renderHeroAppearence(data.appearance);
         if (localArrayIds.indexOf(heroId) !== -1) {
             starredIcon.innerHTML = '<i id="star-click" class="fas fa-heart"></i>';
         }
         else {
             starredIcon.innerHTML = '<i id="star-click" class="far fa-heart"></i>';
         }
-
-
         starredIcon.onclick = function () {
             var index = localArrayIds.indexOf(heroId);
             if (index !== -1) {
@@ -45,12 +78,14 @@
                 starredIcon.innerHTML = '<i id="star-click" class="far fa-heart"></i>';
                 console.log(localArrayIds);
                 localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
+                toast(heroName.innerHTML + " Removed from Favourites", 0);
             }
             else {
                 localArrayIds.push(heroId);
                 starredIcon.innerHTML = '<i id="star-click" class="fas fa-heart"></i>';
                 console.log(localArrayIds);
                 localStorage.setItem("listFavHero", JSON.stringify(localArrayIds));
+                toast(heroName.innerHTML + " Added to Favourites", 1);
             }
         }
 

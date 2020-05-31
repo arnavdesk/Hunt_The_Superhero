@@ -68,6 +68,7 @@ a{
 }
 
 .super-hero-name{
+    text-align: center;
     border: 5px solid white;
     padding: 10px;
     align-self: center;
@@ -76,13 +77,8 @@ a{
     margin: 10px 0px;
 }
 
-#hero-biography{
-    align-self: flex-start;
-}
-
 .less-important{
-    font-size: 20px;
-    color: gray;
+    color: lightslategray;
 }
 
 .bottom-margin-10px{
@@ -94,19 +90,21 @@ a{
 
 
 .power-stats{
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     margin: 5px;
+
 }
 
 .skill-progress{
     width: 200px;
     background-color: lightgray;
     border-radius: 25px;
-    margin: 10px;
+    margin: 20px;
+    
 }
 
 .skill-radius{
@@ -118,6 +116,7 @@ a{
 }
 
 .skill-name{
+    padding: 3px;
     display: block;
     text-align: center;
     color: white;
@@ -125,6 +124,10 @@ a{
 }
 
 /* Colors */
+
+.color-bg-blue{
+    background-color: rgb(20, 27, 65);
+}
 
 .skill-color-blue{
     background-color: #0a97b0;
@@ -148,6 +151,45 @@ a{
 
 .skill-color-purple{
    background-color:  #553f2d;
+}
+
+
+#toast-div{
+    color: white;
+    opacity: 0;
+    border-radius: 10px;
+    transition: opacity 0.2s ease-in-out;
+    position: fixed;
+    bottom: 30px;
+    left: 10px;
+    background-color: red;
+    padding: 5px;
+    font-size: 20px;
+    max-width: 150px;
+    text-align: center;
+}
+
+
+/* Details Section */
+
+.details-section{
+    font-size: 25px;
+    box-sizing: border-box;
+    width: 98%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-heading{
+    font-size: 40px;
+    text-align: center;
+    text-decoration: underline;
+    padding: 20px;
+}
+
+#hero-biography{
+    align-self: flex-start;
 }
 
 /* skill width
