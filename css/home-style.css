@@ -3,6 +3,8 @@ body{
     padding: 0px;
     margin: 0px;
     margin-bottom: 30px;
+    background-image: url('https://st.depositphotos.com/1310390/4994/v/450/depositphotos_49945817-stock-illustration-comic-book-speech-bubbles.jpg');
+    background-repeat: repeat;
 }
 
 a{
@@ -15,11 +17,16 @@ label{
 }
 
 #heading-main{
+    color: black;
+    font-weight: 900;
     padding: 2px;
     font-size: 40px;
-    color: black;
     text-align: center;
     margin-top: 50px;
+}
+
+#headin-in{
+    background-color: #00B0FF;
 }
 
 #main-1{
@@ -47,7 +54,7 @@ label{
     left: 0px;
     right: 0px;
     display: flex;
-    padding: 15px 30px;
+    padding: 11px 30px;
     background-color: black;
     color: white;
 }

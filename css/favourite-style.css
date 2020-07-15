@@ -3,6 +3,7 @@ body{
     padding: 0px;
     margin: 0px;
     margin-bottom: 30px;
+    background-image: url('https://st2.depositphotos.com/2971115/6649/v/450/depositphotos_66498123-stock-illustration-comic-speech-bubbles-seamless-pattern.jpg');
 }
 
 a{
@@ -117,6 +118,10 @@ label{
     text-align: center; 
     margin-top: 30px;
     display: none;
+}
+
+#headin-in{
+    background-color: #FFD740;
 }
 
 @media screen and (max-width : 900px)
