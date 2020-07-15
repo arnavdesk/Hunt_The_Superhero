@@ -229,8 +229,12 @@ a{
     }
 
     .hero-img-container{
-        width: 50%;
+        width: 60%;
         align-self: center;
+    }
+
+    .super-hero-name{
+        font-size: 1.3em;
     }
 
     .hero-img{
@@ -250,6 +254,7 @@ a{
 }
 
 @media screen and (max-width:330px){
+    
     .nav-items{
         font-size: 18px;
     }
