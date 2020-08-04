@@ -1,6 +1,6 @@
 # Hunt_The_Superhero
 <h1> Link for the website : https://arnavdesk.github.io/Hunt_The_Superhero/ </h1>
-<hr>
+
 <h2>How to run the website/app? </h2>
 <p> Either clone the repo and run or just run on the hosted link. </p>
 
