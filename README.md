@@ -3,7 +3,7 @@
 <hr>
 <h2>How to run the website/app? </h2>
 <p> Either clone the repo and run or just run on the hosted link. </p>
-<hr>
+
 <h2>Brief information about website : </h2>
 <p>
   Superhero Hunter website is a plain website built upon vanilla js for the marvel and dc fanatics,
@@ -15,7 +15,7 @@
   API end points used : /search/superheroname, /id
 </p>
 
-<hr>
+
 
 <h2> Flow of website : </h2>
 
@@ -35,7 +35,7 @@
     </p>
 </p>
 
-<hr>
+
 
 <p>I always welcome contributors, and also a lot of credit goes to the developer of API! </p>
 
